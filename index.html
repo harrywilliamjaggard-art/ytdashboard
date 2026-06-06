@@ -1124,6 +1124,140 @@
   setInterval(updateDayBar, 60 * 1000);
   tick(true);
   setInterval(tick, 5000);
+
+  // ── Supabase Sync ──
+  (function () {
+    const SUPABASE_URL = 'https://gsdydpaagaxelungnswm.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_9XlXSUzh2TzaRJtoYePHEg_VrZNMgM-';
+    const APP_KEY      = 'jarvis';
+    const DEBOUNCE_MS  = 250;
+    const isSyncKey    = k => typeof k === 'string' && (k.startsWith('goals:') || k === 'goal_streak_v1');
+
+    const _origSet    = Storage.prototype.setItem.bind(localStorage);
+    const _origRemove = Storage.prototype.removeItem.bind(localStorage);
+
+    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    let lastSyncedJson = null;
+    let pushTimer      = null;
+    let pendingRemote  = null;
+    let applying       = false;
+    let focused        = false;
+
+    document.addEventListener('focusin', e => {
+      const t = e.target;
+      focused = t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' ||
+                t.tagName === 'SELECT' || t.getAttribute('contenteditable') === 'true';
+    });
+    document.addEventListener('focusout', () => {
+      focused = false;
+      if (pendingRemote) { applyRemote(pendingRemote); pendingRemote = null; }
+    });
+
+    function snapshot() {
+      const s = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (isSyncKey(k)) try { s[k] = JSON.parse(localStorage.getItem(k)); } catch { s[k] = localStorage.getItem(k); }
+      }
+      return s;
+    }
+
+    function applyRemote(state) {
+      applying = true;
+      try {
+        const toRemove = [];
+        for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (isSyncKey(k)) toRemove.push(k); }
+        toRemove.forEach(k => _origRemove(k));
+        Object.entries(state || {}).forEach(([k, v]) => _origSet(k, JSON.stringify(v)));
+        runStreakCheck(); renderStreak();
+        loadToday(); loadTomorrow();
+        cycleIdx = 0; tick(true);
+      } finally {
+        applying = false;
+      }
+      lastSyncedJson = JSON.stringify(snapshot());
+    }
+
+    async function push() {
+      try {
+        const snap = snapshot();
+        const json = JSON.stringify(snap);
+        if (json === lastSyncedJson) return;
+        lastSyncedJson = json;
+        await db.from('app_state').upsert({ key: APP_KEY, state: snap, updated_at: new Date().toISOString() });
+      } catch (e) { console.warn('[sync] push failed', e); }
+    }
+
+    function schedulePush() {
+      clearTimeout(pushTimer);
+      pushTimer = setTimeout(push, DEBOUNCE_MS);
+    }
+
+    function flushNow() {
+      if (!pushTimer) return;
+      clearTimeout(pushTimer); pushTimer = null;
+      const snap = snapshot();
+      const json = JSON.stringify(snap);
+      if (json === lastSyncedJson) return;
+      fetch(`${SUPABASE_URL}/rest/v1/app_state`, {
+        method: 'POST', keepalive: true,
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Prefer': 'resolution=merge-duplicates',
+        },
+        body: JSON.stringify({ key: APP_KEY, state: snap, updated_at: new Date().toISOString() }),
+      }).catch(() => {});
+    }
+
+    window.addEventListener('pagehide', flushNow);
+    window.addEventListener('beforeunload', flushNow);
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flushNow(); });
+
+    localStorage.setItem = function (k, v) {
+      _origSet(k, v);
+      try { if (!applying && isSyncKey(k)) schedulePush(); } catch {}
+    };
+    localStorage.removeItem = function (k) {
+      _origRemove(k);
+      try { if (!applying && isSyncKey(k)) schedulePush(); } catch {}
+    };
+
+    async function init() {
+      try {
+        const { data } = await db.from('app_state').select('state').eq('key', APP_KEY).single();
+        if (data?.state && Object.keys(data.state).length > 0) {
+          applyRemote(data.state);
+        } else {
+          const snap = snapshot();
+          if (Object.keys(snap).length > 0) {
+            lastSyncedJson = JSON.stringify(snap);
+            await db.from('app_state').upsert({ key: APP_KEY, state: snap, updated_at: new Date().toISOString() });
+          }
+        }
+      } catch (e) { console.warn('[sync] init failed', e); }
+
+      try {
+        db.channel(`app_state:${APP_KEY}`)
+          .on('postgres_changes', {
+            event: '*', schema: 'public', table: 'app_state',
+            filter: `key=eq.${APP_KEY}`,
+          }, ({ new: row }) => {
+            if (!row?.state) return;
+            const remoteJson = JSON.stringify(row.state);
+            if (remoteJson === lastSyncedJson) return;
+            lastSyncedJson = remoteJson;
+            if (focused) { pendingRemote = row.state; return; }
+            applyRemote(row.state);
+          })
+          .subscribe();
+      } catch (e) { console.warn('[sync] realtime failed', e); }
+    }
+
+    init();
+  })();
 </script>
 </body>
 </html>
