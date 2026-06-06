@@ -1097,6 +1097,22 @@
 
   // ── Init ──
   runRollover();
+
+  // Seed daily goals once
+  if (!storeGet('daily_goals_seeded_v1')) {
+    const _sk = `goals:${getActiveDateString()}`;
+    const _existing = storeGet(_sk) || [];
+    const _existingTexts = new Set(_existing.map(g => g.text.toLowerCase()));
+    const _seeds = [
+      'Hit 12% body fat',
+      '15,000 steps',
+      '90% sleep score',
+      '1 cold approach',
+    ].filter(t => !_existingTexts.has(t.toLowerCase()));
+    if (_seeds.length) storeSet(_sk, [..._existing, ..._seeds.map(text => ({ text, done: false }))]);
+    storeSet('daily_goals_seeded_v1', true);
+  }
+
   runStreakCheck();
   renderStreak();
 
