@@ -1,0 +1,475 @@
+<title>Series Routing Dossier — Venezuela · Haiti · West Africa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --paper:#EAE7E0; --surface:#F5F3ED; --surface-2:#E0DBD1; --stub:#E7E2D8;
+    --ink:#191C22; --ink-soft:#565A62; --line:#D4CFC4;
+    --accent:#C0821A; --accent-2:#8A5D0E;
+    --go:#2E7A63; --info:#3C6A94; --stop:#A63A3A;
+    --go-bg:#DDE9E2; --info-bg:#DDE6EE; --stop-bg:#EEDCDA; --accent-bg:#EFE4CC;
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    --maxw:1080px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#0F1217; --surface:#171B21; --surface-2:#1F252E; --stub:#141922;
+      --ink:#ECE8E0; --ink-soft:#989EA7; --line:#2A313B;
+      --accent:#EFB645; --accent-2:#EFB645;
+      --go:#54B491; --info:#77A6CE; --stop:#DB6A64;
+      --go-bg:#16281f; --info-bg:#152430; --stop-bg:#2c1918; --accent-bg:#2b2412;
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#EAE7E0; --surface:#F5F3ED; --surface-2:#E0DBD1; --stub:#E7E2D8;
+    --ink:#191C22; --ink-soft:#565A62; --line:#D4CFC4;
+    --accent:#C0821A; --accent-2:#8A5D0E;
+    --go:#2E7A63; --info:#3C6A94; --stop:#A63A3A;
+    --go-bg:#DDE9E2; --info-bg:#DDE6EE; --stop-bg:#EEDCDA; --accent-bg:#EFE4CC;
+  }
+  :root[data-theme="dark"]{
+    --paper:#0F1217; --surface:#171B21; --surface-2:#1F252E; --stub:#141922;
+    --ink:#ECE8E0; --ink-soft:#989EA7; --line:#2A313B;
+    --accent:#EFB645; --accent-2:#EFB645;
+    --go:#54B491; --info:#77A6CE; --stop:#DB6A64;
+    --go-bg:#16281f; --info-bg:#152430; --stop-bg:#2c1918; --accent-bg:#2b2412;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);
+    line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:clamp(1rem,4vw,2.5rem);}
+  a{color:var(--accent-2);text-underline-offset:2px}
+  h1,h2,h3{font-family:var(--font-display);font-weight:600;text-wrap:balance;margin:0}
+  .mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+
+  /* ---------- masthead ---------- */
+  .mast{border:1px solid var(--line);background:var(--surface);border-radius:14px;
+    padding:clamp(1.1rem,3vw,1.8rem);position:relative;overflow:hidden}
+  .mast::before{content:"";position:absolute;inset:0 auto 0 0;width:5px;
+    background:linear-gradient(var(--accent),var(--accent-2))}
+  .kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--accent-2)}
+  .mast h1{font-size:clamp(1.7rem,4.6vw,2.7rem);line-height:1.05;margin:.5rem 0 .35rem}
+  .mast p.lede{margin:.2rem 0 0;color:var(--ink-soft);max-width:60ch}
+  .route{font-family:var(--font-mono);font-size:.82rem;margin-top:1.1rem;
+    display:flex;flex-wrap:wrap;gap:.4rem .55rem;align-items:center}
+  .route b{background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:.15rem .45rem;font-weight:600;letter-spacing:.03em}
+  .route span{color:var(--accent-2);font-weight:700}
+
+  /* ---------- currency legend ---------- */
+  .stash{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.6rem;margin-top:1.2rem}
+  .stash .cur{border:1px solid var(--line);border-radius:10px;background:var(--surface-2);
+    padding:.6rem .7rem}
+  .stash .cur .n{font-family:var(--font-mono);font-size:1.05rem;font-weight:700}
+  .stash .cur .l{font-size:.74rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em}
+
+  /* ---------- section ---------- */
+  section{margin-top:clamp(2.2rem,5vw,3.4rem)}
+  .sec-head{display:flex;align-items:baseline;gap:.7rem;margin-bottom:1.1rem;
+    border-bottom:1px solid var(--line);padding-bottom:.55rem}
+  .sec-head .no{font-family:var(--font-mono);font-size:.8rem;color:var(--accent-2);font-weight:700}
+  .sec-head h2{font-size:clamp(1.25rem,3vw,1.7rem)}
+  .sec-intro{color:var(--ink-soft);max-width:68ch;margin:-.4rem 0 1.3rem}
+
+  /* ---------- chips ---------- */
+  .chip{display:inline-flex;align-items:center;gap:.3rem;font-family:var(--font-mono);
+    font-size:.68rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    padding:.2rem .5rem;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+  .chip.go{color:var(--go);background:var(--go-bg);border-color:var(--go)}
+  .chip.info{color:var(--info);background:var(--info-bg);border-color:var(--info)}
+  .chip.stop{color:var(--stop);background:var(--stop-bg);border-color:var(--stop)}
+  .chip.gold{color:var(--accent-2);background:var(--accent-bg);border-color:var(--accent)}
+
+  .legend{display:flex;flex-wrap:wrap;gap:.5rem;margin:-.3rem 0 0}
+
+  /* ---------- boarding pass leg cards ---------- */
+  .leg{display:grid;grid-template-columns:1fr 240px;gap:0;border:1px solid var(--line);
+    border-radius:12px;background:var(--surface);overflow:hidden;margin-bottom:1rem}
+  .leg .main{padding:1rem 1.2rem}
+  .leg .stub{background:var(--stub);border-left:2px dashed var(--line);padding:1rem 1.1rem;
+    display:flex;flex-direction:column;gap:.5rem;position:relative}
+  .leg .stub::before,.leg .stub::after{content:"";position:absolute;left:-9px;width:16px;height:16px;
+    border-radius:50%;background:var(--paper);border:1px solid var(--line)}
+  .leg .stub::before{top:-9px}.leg .stub::after{bottom:-9px}
+  .leg .lbl{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-soft)}
+  .leg h3{font-size:1.12rem;margin:.15rem 0 .5rem}
+  .leg .path{font-family:var(--font-mono);font-size:.83rem;color:var(--ink);margin-bottom:.6rem}
+  .leg .path em{color:var(--ink-soft);font-style:normal}
+  .leg p{margin:.4rem 0 0;font-size:.92rem}
+  .leg .flags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+  .stub .cash{font-family:var(--font-mono);font-size:1.35rem;font-weight:700;line-height:1}
+  .stub .cash small{display:block;font-size:.66rem;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-soft);margin-bottom:.2rem}
+  .stub .award{font-size:.82rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:.5rem}
+  .stub .award b{color:var(--ink);font-family:var(--font-mono);font-size:.86rem}
+  @media(max-width:640px){.leg{grid-template-columns:1fr}
+    .leg .stub{border-left:none;border-top:2px dashed var(--line)}
+    .leg .stub::before{top:-9px;left:auto;right:20px}.leg .stub::after{display:none}}
+
+  /* ---------- card grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+  .card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:1.05rem 1.15rem;
+    display:flex;flex-direction:column;gap:.5rem}
+  .card h3{font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+  .card .route-mini{font-family:var(--font-mono);font-size:.8rem;color:var(--accent-2);font-weight:600}
+  .card .fig{font-family:var(--font-mono);font-size:1.5rem;font-weight:700}
+  .card .fig small{font-size:.72rem;color:var(--ink-soft);font-weight:600}
+  .card p{margin:0;font-size:.88rem;color:var(--ink)}
+  .card .foot{margin-top:auto;padding-top:.4rem}
+
+  /* ---------- allocation columns ---------- */
+  .alloc{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+  .alloc .col{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+  .alloc .col header{padding:.85rem 1rem;background:var(--surface-2);border-bottom:1px solid var(--line)}
+  .alloc .col header .bal{font-family:var(--font-mono);font-size:1.25rem;font-weight:700}
+  .alloc .col header .nm{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft)}
+  .alloc .col ul{margin:0;padding:.85rem 1rem .95rem 1.15rem;font-size:.9rem;display:flex;
+    flex-direction:column;gap:.55rem}
+  .alloc .col li{padding-left:.1rem}
+  .alloc .col li b{color:var(--accent-2)}
+
+  /* ---------- table ---------- */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+  table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:560px}
+  th,td{text-align:left;padding:.62rem .8rem;border-bottom:1px solid var(--line)}
+  thead th{background:var(--surface-2);font-family:var(--font-mono);font-size:.7rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  tbody tr:last-child td{border-bottom:none}
+  td.prog{font-family:var(--font-mono);font-weight:600;color:var(--accent-2)}
+  td.rt{font-family:var(--font-mono)}
+
+  /* ---------- caveats ---------- */
+  .notes{display:grid;gap:.7rem}
+  .note{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;
+    background:var(--surface);padding:.75rem .95rem;font-size:.9rem}
+  .note.stopn{border-left-color:var(--stop)}
+  .note b{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+
+  footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);
+    font-size:.8rem;color:var(--ink-soft)}
+  .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="kicker">Award Flight Dossier · illustrative Sep–Oct 2026</div>
+    <h1>The Difficult-Places Series</h1>
+    <p class="lede">Business & first-class routing for a Venezuela → Haiti → West Africa
+      run, built around redeeming miles and filming the long-haul cabins. Cash figures are
+      live one-way benchmarks; use them to judge every award.</p>
+    <div class="route">
+      <b>BEY / DXB</b><span>→</span><b>CCS Caracas</b><span>→</span><b>Haiti via SDQ / MIA</b>
+      <span>→</span><b>reposition</b><span>→</span><b>DSS Dakar</b><span>→</span><b>BJL Banjul</b>
+      <span>→</span><b>Cape Verde</b>
+    </div>
+    <div class="stash">
+      <div class="cur"><div class="n">~140k</div><div class="l">Avios pool*</div></div>
+      <div class="cur"><div class="n">150k</div><div class="l">Etihad Guest</div></div>
+      <div class="cur"><div class="n">55k</div><div class="l">KrisFlyer</div></div>
+      <div class="cur"><div class="n">Hilton</div><div class="l">hotels — book direct</div></div>
+    </div>
+    <p class="lede" style="font-size:.78rem;margin-top:.7rem">*Avios 66k held + ~55k Revolut + 20k Amex, all pooling into one oneworld currency. Balances change — confirm before booking.</p>
+  </header>
+
+  <!-- ============ HOW TO READ ============ -->
+  <section>
+    <div class="legend">
+      <span class="chip go">◆ great redemption</span>
+      <span class="chip info">◆ needs positioning / note</span>
+      <span class="chip stop">◆ US / OFAC / not redeemable</span>
+      <span class="chip gold">◆ films like first class</span>
+    </div>
+  </section>
+
+  <!-- ============ 1. THE ROUTE ============ -->
+  <section>
+    <div class="sec-head"><span class="no">01</span><h2>The route, leg by leg</h2></div>
+    <p class="sec-intro">Each leg shows the live cash business fare (the number to beat) and the
+      smartest way to buy it with miles from your stash. The Caribbean crossing is where Avios and
+      KrisFlyer earn their keep; the West Africa hops are cheap enough that cash is often fine.</p>
+
+    <div class="leg reveal">
+      <div class="main">
+        <div class="lbl">Leg 1 · The Atlantic crossing</div>
+        <h3>Into Venezuela — Caracas</h3>
+        <div class="path">DXB <em>→</em> IST <em>→</em> CCS &nbsp;·&nbsp; Turkish Airlines &nbsp;·&nbsp; ~22h</div>
+        <p>Turkish via Istanbul is the clean, no-US routing. Star Alliance, so redeem
+          <b>KrisFlyer</b> (your 55k may cover a one-way Saver). Prefer oneworld? Iberia via
+          Madrid instead, on <b>Avios</b>.</p>
+        <div class="flags">
+          <span class="chip go">no US routing</span>
+          <span class="chip info">KrisFlyer or Avios</span>
+        </div>
+      </div>
+      <div class="stub">
+        <div class="cash"><small>cash benchmark</small>$4,791</div>
+        <div class="award">Award idea:<br><b>KrisFlyer</b> via TK, or <b>Avios</b> via IB/MAD</div>
+      </div>
+    </div>
+
+    <div class="leg reveal">
+      <div class="main">
+        <div class="lbl">Leg 2 · Caribbean gateway</div>
+        <h3>Toward Haiti — via Santo Domingo</h3>
+        <div class="path">DXB <em>→</em> DOH <em>→</em> MAD <em>→</em> SDQ &nbsp;·&nbsp; Qatar + Iberia</div>
+        <p>Your strongest <b>Avios</b> leg: a single oneworld award, <b>Qsuite</b> on the long haul
+          plus Iberia into Santo Domingo. The cash version even prices Qatar First DXB–DOH. From SDQ,
+          hop to Cap-Haïtien on Sunrise Airways.</p>
+        <div class="flags">
+          <span class="chip go">best Avios value</span>
+          <span class="chip gold">Qsuite films like first</span>
+        </div>
+      </div>
+      <div class="stub">
+        <div class="cash"><small>cash benchmark</small>$4,123</div>
+        <div class="award">Award idea:<br><b>Avios</b> — oneworld DXB·DOH·MAD·SDQ</div>
+      </div>
+    </div>
+
+    <div class="leg reveal">
+      <div class="main">
+        <div class="lbl">Leg 3 · Optional Cuba add-on</div>
+        <h3>Havana — dodge the United States</h3>
+        <div class="path">via MAD (Iberia) or IST (Turkish) &nbsp;·&nbsp; <em>not</em> via Miami</div>
+        <p>Every <em>cash</em> business option to Havana routes through the US (Dallas/Miami) — which
+          drags a Cuba trip into ESTA + OFAC declarations. Book the award through <b>Europe on Avios</b>
+          (Iberia MAD–HAV) or <b>Turkish on KrisFlyer</b> and you never touch American soil.</p>
+        <div class="flags">
+          <span class="chip stop">cash = US routing + OFAC</span>
+          <span class="chip go">award via Europe = clean</span>
+        </div>
+      </div>
+      <div class="stub">
+        <div class="cash"><small>cash (US-routed)</small>$3,964</div>
+        <div class="award">Non-US award:<br><b>Avios</b> IB MAD–HAV · <b>KrisFlyer</b> TK</div>
+      </div>
+    </div>
+
+    <div class="leg reveal">
+      <div class="main">
+        <div class="lbl">Leg 4 · Internal — no premium cabin exists</div>
+        <h3>The Haiti hop — Cap-Haïtien</h3>
+        <div class="path">SDQ / HAV / MIA <em>→</em> CAP &nbsp;·&nbsp; Sunrise Airways &nbsp;·&nbsp; economy</div>
+        <p>Cap-Haïtien is the functioning gateway — Port-au-Prince is effectively closed on security
+          grounds. There's no business/first award here; pay cash for a short regional hop and spend
+          the miles on the legs that film.</p>
+        <div class="flags"><span class="chip info">cash, economy, ~$150–400</span></div>
+      </div>
+      <div class="stub">
+        <div class="cash"><small>cash benchmark</small>~$300</div>
+        <div class="award">No premium cabin —<br>ride the redemption to the gateway</div>
+      </div>
+    </div>
+
+    <div class="leg reveal">
+      <div class="main">
+        <div class="lbl">Leg 5 · Reposition + West Africa</div>
+        <h3>Across to Senegal & The Gambia</h3>
+        <div class="path">IST or CMN <em>→</em> DSS Dakar &nbsp;/&nbsp; BJL Banjul</div>
+        <p>Turkish flies <b>nonstop IST–Banjul</b> (best product) at ~$2,235. The award sweet spot is
+          <b>Royal Air Maroc on Avios via Casablanca</b> — oneworld, low surcharges, serves both DSS
+          and BJL. Dakar also has Air Algérie via Algiers from ~$1,121 (cheap, basic).</p>
+        <div class="flags">
+          <span class="chip go">RAM/Avios = low-fee sweet spot</span>
+          <span class="chip info">TK nonstop = best cabin</span>
+        </div>
+      </div>
+      <div class="stub">
+        <div class="cash"><small>cash · IST–BJL nonstop</small>$2,235</div>
+        <div class="award">Award idea:<br><b>Avios</b> on Royal Air Maroc via CMN</div>
+      </div>
+    </div>
+
+    <div class="leg reveal">
+      <div class="main">
+        <div class="lbl">Leg 6 · Optional island add-on</div>
+        <h3>Cape Verde</h3>
+        <div class="path">LIS <em>→</em> SID Sal / RAI Praia &nbsp;·&nbsp; TAP (Star Alliance)</div>
+        <p>Sits neatly between West Africa and Europe. Premium cabins are thin — TAP via Lisbon is the
+          realistic option and it's <b>Star Alliance</b>, so <b>KrisFlyer</b> or Aeroplan can book it.
+          Short enough that cash economy is defensible if award space is dry.</p>
+        <div class="flags"><span class="chip info">KrisFlyer / Aeroplan via TAP</span></div>
+      </div>
+      <div class="stub">
+        <div class="cash"><small>cash · short-haul</small>varies</div>
+        <div class="award">Award idea:<br><b>KrisFlyer</b> on TAP via LIS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. FIRST CLASS ============ -->
+  <section>
+    <div class="sec-head"><span class="no">02</span><h2>First-class opportunities</h2></div>
+    <p class="sec-intro">You asked which first-class products are worth chasing for the channel. Two of
+      your assumptions need correcting — Lufthansa just shut First to partner miles, and the Etihad
+      <em>Residence</em> can't be bought with points at all. But your 150k Etihad is a first-class
+      ticket waiting to happen.</p>
+
+    <div class="grid">
+      <div class="card reveal">
+        <span class="chip go">your 150k Etihad fits this</span>
+        <h3>Etihad First Apartments (A380)</h3>
+        <div class="route-mini">AUH → LHR / CDG / JFK / Tokyo</div>
+        <div class="fig">~110k <small>Etihad Guest, one-way</small></div>
+        <p>The A380 is back and expanding in 2026. A private suite with separate seat, bed and onboard
+          shower — the single best first-class piece you can film, and your Etihad stash is the perfect
+          currency for it. (AA AAdvantage also books it ~62.5k from LON/PAR, ≤30 days out.)</p>
+        <div class="foot"><span class="chip stop">The Residence = not redeemable, ever</span></div>
+      </div>
+
+      <div class="card reveal">
+        <span class="chip gold">cash steal</span>
+        <h3>Oman Air First — nonstop</h3>
+        <div class="route-mini">MCT → LHR</div>
+        <div class="fig">$2,591 <small>cash, one-way First</small></div>
+        <p>A genuine First cabin, nonstop, 60kg bag allowance — for the price of many business fares.
+          The cheapest true-First long-haul I found. Great B-roll, minimal spend. (You mentioned "BA
+          Muscat–London" — it's actually Oman Air flying the First cabin on this route.)</p>
+        <div class="foot"><span class="chip info">buy with cash, or Oman Air Sindbad miles</span></div>
+      </div>
+
+      <div class="card reveal">
+        <span class="chip gold">aspirational target</span>
+        <h3>ANA "The Suite" First</h3>
+        <div class="route-mini">Tokyo → US / Europe</div>
+        <div class="fig">~110–150k <small>miles, elite value</small></div>
+        <p>One of the best first cabins flying — cash often $18–20k, so redemptions hit 8–13¢/mile.
+          Not in your currencies today, but Amex MR → ANA (in some markets) or Virgin points can get
+          you there. Worth banking toward for a marquee episode.</p>
+        <div class="foot"><span class="chip info">accrue — not a current-stash booking</span></div>
+      </div>
+
+      <div class="card reveal">
+        <span class="chip stop">expectation check</span>
+        <h3>Lufthansa First</h3>
+        <div class="route-mini">FRA / MUC → long-haul</div>
+        <div class="fig">cash only <small>from June 2026</small></div>
+        <p>It still exists and it's superb — but as of 1 June 2026 Lufthansa stopped releasing First
+          award space to partner programs. So it's Miles &amp; More or cash only now; don't plan an
+          Avios/KrisFlyer First redemption on LH.</p>
+        <div class="foot"><span class="chip info">JAL & Cathay First remain partner-bookable</span></div>
+      </div>
+
+      <div class="card reveal">
+        <span class="chip gold">your everyday luxury</span>
+        <h3>Qatar Qsuite</h3>
+        <div class="route-mini">DOH → everywhere</div>
+        <div class="fig">Avios <small>your workhorse</small></div>
+        <p>Technically business, but the double-suite films like first and it's all over your natural
+          routings via Doha. This is what your ~140k Avios pool is really for — book it liberally.</p>
+        <div class="foot"><span class="chip go">low miles, world-class cabin</span></div>
+      </div>
+
+      <div class="card reveal">
+        <span class="chip info">reference</span>
+        <h3>Cathay First</h3>
+        <div class="route-mini">HKG → US / Europe</div>
+        <div class="fig">70k <small>Alaska miles + stopover</small></div>
+        <p>A classic sweet spot (~$12k cash) if a future series runs through Asia. Needs Alaska miles,
+          not your current currencies — filed here so it's on your radar.</p>
+        <div class="foot"><span class="chip info">future-series idea</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. ALLOCATION ============ -->
+  <section>
+    <div class="sec-head"><span class="no">03</span><h2>How to spend each currency</h2></div>
+    <p class="sec-intro">Your three pots do different jobs. Don't burn the wrong one — especially your
+      Etihad, which is weak for the Americas but is your one shot at first class.</p>
+    <div class="alloc">
+      <div class="col reveal">
+        <header><div class="bal">~140k</div><div class="nm">Avios pool — the workhorse</div></header>
+        <ul>
+          <li><b>Caribbean crossing:</b> Qatar + Iberia via DOH/MAD to SDQ/CCS/HAV.</li>
+          <li><b>Cuba, cleanly:</b> Iberia MAD–HAV, no US routing.</li>
+          <li><b>West Africa:</b> Royal Air Maroc via Casablanca to BJL/DSS — low surcharge.</li>
+          <li>Feeds from Revolut + Amex, so top up as needed.</li>
+        </ul>
+      </div>
+      <div class="col reveal">
+        <header><div class="bal">150k</div><div class="nm">Etihad Guest — the first-class card</div></header>
+        <ul>
+          <li><b>Spend it on:</b> Etihad First Apartments, AUH → London / Paris / JFK / Tokyo.</li>
+          <li>Weak for Venezuela/Cuba/Haiti — don't force it onto those legs.</li>
+          <li>Pair with your love of Dubai: position AUH and fly First out.</li>
+          <li>The Residence is <b>not</b> bookable with points — Apartments only.</li>
+        </ul>
+      </div>
+      <div class="col reveal">
+        <header><div class="bal">55k</div><div class="nm">KrisFlyer — the Star Alliance backup</div></header>
+        <ul>
+          <li><b>Turkish</b> IST–Caracas / IST–Havana (non-US routings).</li>
+          <li><b>TAP</b> Lisbon–Cape Verde if you add the islands.</li>
+          <li>May only part-cover a long-haul Saver — top up from Amex if needed.</li>
+          <li>Natural fit later for Denpasar/Asia routings.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. SEATS.AERO CHECKLIST ============ -->
+  <section>
+    <div class="sec-head"><span class="no">04</span><h2>Your seats.aero search list</h2></div>
+    <p class="sec-intro">I can't query seats.aero live from here — so here's the exact list to run
+      yourself. Search <em>by program</em>, set cabin to Business/First, and use the calendar to line
+      up dates. When you find space, send me the date and I'll pull the matching cash fare to confirm
+      the value.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Program to filter</th><th>Route(s)</th><th>Cabin</th><th>What you're hunting</th></tr></thead>
+        <tbody>
+          <tr><td class="prog">Iberia / Avios</td><td class="rt">MAD–CCS · MAD–HAV · MAD–SDQ</td><td>Business</td><td>Caribbean crossing, off-peak days</td></tr>
+          <tr><td class="prog">Qatar / Avios</td><td class="rt">DOH–MAD · DXB–DOH</td><td>Business</td><td>Qsuite feeder into the Iberia legs</td></tr>
+          <tr><td class="prog">Royal Air Maroc / Avios</td><td class="rt">CMN–BJL · CMN–DSS</td><td>Business</td><td>West Africa, low-surcharge sweet spot</td></tr>
+          <tr><td class="prog">Etihad Guest / AA</td><td class="rt">AUH–LHR · AUH–CDG · AUH–JFK</td><td>First</td><td>First Apartments — the marquee cabin</td></tr>
+          <tr><td class="prog">KrisFlyer</td><td class="rt">IST–CCS · IST–HAV (Turkish)</td><td>Business</td><td>Non-US routings to Venezuela/Cuba</td></tr>
+          <tr><td class="prog">KrisFlyer / Aeroplan</td><td class="rt">LIS–SID · LIS–RAI (TAP)</td><td>Business</td><td>Cape Verde add-on, if included</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 5. CAVEATS ============ -->
+  <section>
+    <div class="sec-head"><span class="no">05</span><h2>Before you book — the fine print</h2></div>
+    <div class="notes">
+      <div class="note stopn"><b>Cuba · OFAC</b><br>Book Havana with non-US currencies (Avios / Flying
+        Blue) and route via Europe or Istanbul. Every cash business option goes through the US, which
+        means ESTA + a declared OFAC travel category. Avoid it entirely by flying the award.</div>
+      <div class="note"><b>Venezuela · entry</b><br>Turkish IST–Caracas is the clean non-US routing.
+        Check current visa rules and travel advisories close to departure — this one moves.</div>
+      <div class="note stopn"><b>Haiti · gateway reality</b><br>Fly into Cap-Haïtien (CAP), not
+        Port-au-Prince (effectively closed on security/FAA grounds). No premium cabin exists on the
+        final hop — Sunrise Airways in economy from SDQ / HAV / Miami.</div>
+      <div class="note"><b>Numbers</b><br>Cash fares are live one-way Business (or First where noted),
+        illustrative Sep–Oct 2026 dates, in USD. Award mile figures are typical ranges — confirm exact
+        cost and space at booking. Balances change; check before you transfer.</div>
+      <div class="note"><b>Hotels</b><br>Per your profile: prioritise Hilton and book direct with
+        Hilton (not an OTA) to actually earn Honors points and status on this trip.</div>
+    </div>
+  </section>
+
+  <footer>
+    Series Routing Dossier · prepared from live cash benchmarks (Expedia / Turkish Airlines) and 2026
+    award-program research. Not a booking confirmation — a planning tool. Sources for first-class
+    availability: One Mile at a Time, AwardLocker, View from the Wing, ANA/Etihad program pages.
+  </footer>
+</div>
+
+<script>
+  (function(){
+    if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  })();
+</script>
